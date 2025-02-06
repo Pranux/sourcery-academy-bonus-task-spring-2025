@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.sourcery.project.sourcery.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.sourcery.project.sourcery.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.sourcery.project.sourcery.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.sourcery.project.sourcery.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/sourcery.iml" filepath="$PROJECT_DIR$/.idea/sourcery.iml" />
     </modules>
   </component>

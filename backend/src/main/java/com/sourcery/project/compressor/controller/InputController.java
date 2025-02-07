@@ -21,8 +21,20 @@ public class InputController {
     }
     
     @GetMapping("{id}")
-    public ResponseEntity<InputDto>getInputByID(@PathVariable("id") int id) {
+    public ResponseEntity<InputDto> getInputByID(@PathVariable("id") int id) {
         InputDto inputDto = inputService.getInputById(id);
+        return new ResponseEntity<>(inputDto, HttpStatus.OK);
+    }
+    
+    @GetMapping("{id}/compressed")
+    public ResponseEntity<InputDto> getCompressedString(@PathVariable("id") int id) {
+        InputDto inputDto = inputService.getCompressedString(id);
+        return new ResponseEntity<>(inputDto, HttpStatus.OK);
+    }
+
+    @GetMapping("{id}/decompressed")
+    public ResponseEntity<InputDto> getDecompressedString(@PathVariable("id") int id) {
+        InputDto inputDto = inputService.getDecompressedString(id);
         return new ResponseEntity<>(inputDto, HttpStatus.OK);
     }
 }

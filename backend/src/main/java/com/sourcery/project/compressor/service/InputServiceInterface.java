@@ -6,4 +6,6 @@ public interface InputServiceInterface {
 
     InputDto createNewInput(InputDto inputDto);
     InputDto getInputById(int id);
+    InputDto getCompressedString(int id);
+    InputDto getDecompressedString(int id);
 }

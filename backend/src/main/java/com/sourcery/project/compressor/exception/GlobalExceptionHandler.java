@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     
-    @ExceptionHandler(InputResourseNotFoundException.class)
-    public ResponseEntity<String> handleNotFoundException(InputResourseNotFoundException e) {
+    @ExceptionHandler(InputResourceNotFoundException.class)
+    public ResponseEntity<String> handleNotFoundException(InputResourceNotFoundException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvalidInputException.class)
+    public ResponseEntity<String> handleInvalidInputException(InvalidInputException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
     
     @ExceptionHandler(Exception.class)

@@ -12,4 +12,5 @@ import lombok.Setter;
 public class InputDto {
     private int id;
     private String text;
+    private String type;
 }

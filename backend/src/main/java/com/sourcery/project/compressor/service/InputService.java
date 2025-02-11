@@ -9,6 +9,9 @@ import com.sourcery.project.compressor.repository.InputRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class InputService implements InputServiceInterface {
@@ -20,6 +23,12 @@ public class InputService implements InputServiceInterface {
         Input newInput = InputMapper.mapToInput(inputDto);
         Input savedInput = inputRepository.save(newInput);
         return InputMapper.mapToInputDto(savedInput);
+    }
+    
+    @Override
+    public List<InputDto> getAllInputs() {
+        List<Input> allInputs = inputRepository.findAll();
+        return allInputs.stream().map(InputMapper::mapToInputDto).collect(Collectors.toList());
     }
     
     @Override

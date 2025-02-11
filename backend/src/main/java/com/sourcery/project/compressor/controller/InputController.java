@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/input")
 @AllArgsConstructor
@@ -18,6 +21,12 @@ public class InputController {
     public ResponseEntity<InputDto> createNewInput(@RequestBody InputDto inputDto) {
         InputDto savedInput = inputService.createNewInput(inputDto);
         return new ResponseEntity<>(savedInput, HttpStatus.CREATED);
+    }
+    
+    @GetMapping
+    public ResponseEntity<List<InputDto>> getAllInputs() {
+        List<InputDto> allInputs = inputService.getAllInputs();
+        return new ResponseEntity<>(allInputs, HttpStatus.OK);
     }
     
     @GetMapping("{id}")

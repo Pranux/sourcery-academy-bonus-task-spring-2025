@@ -19,4 +19,7 @@ public class Input {
     
     @NonNull
     private String text;
+    
+    @NonNull
+    private String type;
 }

@@ -7,14 +7,16 @@ public class InputMapper {
     public static InputDto mapToInputDto(Input input){
         return new InputDto(
                 input.getId(),
-                input.getText()
+                input.getText(),
+                input.getType()
         );
     }
 
     public static Input mapToInput(InputDto inputDto){
         return new Input(
                 inputDto.getId(),
-                inputDto.getText()
+                inputDto.getText(),
+                inputDto.getType()
         );
     }
 }

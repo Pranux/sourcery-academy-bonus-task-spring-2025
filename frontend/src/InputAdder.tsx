@@ -4,24 +4,57 @@ import axios from "axios";
 const InputAdder = ({ onInputAdded }) => {
     
     const [input, setInput] = useState('');
-    const [error, setError] = useState('');
-    const [output, setOutput] = useState('');
+    const [error, setError] = useState('');;
 
     const handleInputChanges = (e) => {
         setInput(e.target.value);
+    };
+
+    const validateInput = (text, type) => {
+        if (text.trim() === "") {
+            return null;
+        }
+        if (type === "compress") {
+            if (!/^[a-z]+$/.test(text)) {
+                return "Input must be only lower case letters";
+            }
+        } else if (type === "decompress") {
+            let i = 0;
+            const c = text.split("");
+
+            while (i < c.length) {
+                if (c[i] >= 'a' && c[i] <= 'z') {
+                    i++;
+                    if (i >= c.length || !(c[i] >= '0' && c[i] <= '9')) {
+                        return "Input must be lower case letters followed by a number";
+                    }
+                    while (i < c.length && c[i] >= '0' && c[i] <= '9') {
+                        i++;
+                    }
+                } else {
+                    return "Input must be lower case letters followed by a number";
+                }
+            }
+        }
+        return null;
     };
     
     const handleSubmit = async (e, type) => {
         e.preventDefault();
         setError('');
-        setOutput('');
+
+        const validationError = validateInput(input, type);
+        if (validationError) {
+            setError(validationError);
+            return;
+        }
+        
         try {
             const response = await axios.post('http://localhost:8080/api/input', { text: input, type});
             const inputID = response.data.id;
             const fetchResult =
                 `http://localhost:8080/api/input/${inputID}/${type === "compress" ? "compressed" : "decompressed"}`
-            const resultResponse = await axios.get(fetchResult);
-            setOutput(resultResponse.data.text);
+            await axios.get(fetchResult);
             setInput('');
             onInputAdded();
         } catch (err) {
@@ -41,8 +74,7 @@ const InputAdder = ({ onInputAdded }) => {
                     required
                 />
                 <div className="flex gap-2 mt-4">
-                    <button
-                        className="flex-1"
+                    <button className="flex-1"
                         onClick={(e) =>
                         handleSubmit(e, "compress")}
                     >Compress</button>
@@ -53,7 +85,7 @@ const InputAdder = ({ onInputAdded }) => {
                     >Decompress</button>
                 </div>
             </form>
-            {error && <p className="text-red-500 mt-2">{error}</p>}
+            {error && <p className="text-red-500 mt-2 pt-3">{error}</p>}
         </div>
     )
 }

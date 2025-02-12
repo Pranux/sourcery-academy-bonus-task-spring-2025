@@ -27,7 +27,7 @@ const InputsList = ({ input, loading, error }) => {
     if (error) return <div className="text-red-500">{error}</div>;
 
     return (
-        <div className="mt-6 shadow-xl">
+        <div className="max-w-full overflow-x-auto mt-6 shadow-xl">
             <table className="rounded-lg overflow-hidden">
                 <thead>
                     <tr>

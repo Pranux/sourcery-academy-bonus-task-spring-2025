@@ -73,6 +73,7 @@ input:focus {
 }
 
 table {
+  max-width: 600px;
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -80,12 +81,15 @@ table {
   background-color: #3F4F44;
   border-radius: 10px;
   overflow: hidden;
+  word-break: break-word;
+  table-layout: fixed;
 }
 
 th, td {
   border: 2px solid #A27B5C;
   padding: 10px;
   text-align: left;
+  max-width: 50%;
 }
 
 th {

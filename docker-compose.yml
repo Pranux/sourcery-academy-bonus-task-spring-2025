@@ -1,0 +1,19 @@
+services: 
+  backend:
+    image: "backend"
+    container_name: "backend"
+    ports:
+      - "8080:8080"
+    networks: 
+      - app_network
+        
+  frontend:
+    image: "frontend"
+    container_name: "frontend"
+    ports:
+      - "3000:3000"
+    networks: 
+      - app_network
+
+networks:
+  app_network:

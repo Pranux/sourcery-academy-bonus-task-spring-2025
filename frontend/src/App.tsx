@@ -9,8 +9,7 @@ function App() {
     const [error, setError] = useState('');
     
     const fetchInputs = async () => {
-        setLoading(true);
-        try {
+        setLoading(true);        try {
             const response = await axios.get("http://localhost:8080/api/input");
             setInput(response.data.reverse());
         } catch (err) {

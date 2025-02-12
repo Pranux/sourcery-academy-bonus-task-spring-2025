@@ -1,10 +1,22 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const InputsList = ({ input, loading, error }) => {
-    const [processedData, setProcessedData] = useState({});
+interface InputItem {
+    id: string;
+    text: string;
+    type: string;
+}
 
-    const fetchProcessedData = async (id, type) => {
+interface InputsListProps {
+    input: InputItem[];
+    loading: boolean;
+    error: string;
+}
+
+const InputsList: React.FC<InputsListProps> = ({ input, loading, error }) => {
+    const [processedData, setProcessedData] = useState<Record<string, string>>({});
+
+    const fetchProcessedData = async (id: string, type: string) => {
         try {
             const endpoint = type === "compress" ? "compressed" : "decompressed";
             const response = await axios.get(`http://localhost:8080/api/input/${id}/${endpoint}`);

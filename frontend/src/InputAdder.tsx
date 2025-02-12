@@ -1,16 +1,20 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 
-const InputAdder = ({ onInputAdded }) => {
-    
-    const [input, setInput] = useState('');
-    const [error, setError] = useState('');;
+interface InputAdderProps {
+    onInputAdded: () => void;
+}
 
-    const handleInputChanges = (e) => {
+const InputAdder: React.FC<InputAdderProps> = ({ onInputAdded }) => {
+
+    const [input, setInput] = useState<string>("");
+    const [error, setError] = useState<string>("");
+
+    const handleInputChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);
     };
 
-    const validateInput = (text, type) => {
+    const validateInput = (text: string, type: string) => {
         if (text.trim() === "") {
             return null;
         }
@@ -39,7 +43,7 @@ const InputAdder = ({ onInputAdded }) => {
         return null;
     };
     
-    const handleSubmit = async (e, type) => {
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>, type: string) => {
         e.preventDefault();
         setError('');
 

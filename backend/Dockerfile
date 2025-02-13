@@ -1,4 +1,3 @@
-# Use Java 17 (since Gradle expects Java 17)
 FROM openjdk:17-slim
 
 WORKDIR /app
